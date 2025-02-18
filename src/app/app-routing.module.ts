@@ -33,7 +33,7 @@ const routes: Routes = [
   }
 ];
 
-const appRoutes = RouterModule.forRoot(routes);
+const appRoutes = RouterModule.forRoot(routes, {useHash: true});
 
 @NgModule({
   imports: [appRoutes],
