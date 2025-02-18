@@ -1,0 +1,63 @@
+<div class="tab-pane fade" id="signup">
+    <div class="inner-container">
+        <div class="logo-container-right">
+            <div class="image-section"></div>
+            <p class="slogan">Grow with us</p>
+        </div>
+        <div class="form-container">
+            <h3 class="text-center">Create your account</h3>
+            <form [formGroup]="signupForm" (ngSubmit)="submitForm()">
+                <div class="mb-3">
+                    <label for="firstName" class="form-label">First Name</label>
+                    <input type="text" class="form-control"  formControlName="firstName" id="firstName" placeholder="Enter First Name">
+                    <div class="error" *ngIf="signupForm.get('firstName')?.invalid && signupForm.get('firstName')?.touched">
+                        <span *ngIf="signupForm.get('firstName')?.errors?.['required']">First Name is required.</span>
+                        <span *ngIf="signupForm.get('firstName')?.errors?.['maxlength']">Maximum 240 characters allowed.</span>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="lastName" class="form-label">Last Name</label>
+                    <input type="text" class="form-control" formControlName="lastName" id="lastName" placeholder="Enter Last Name">
+                    <div class="error" *ngIf="signupForm.get('lastName')?.errors?.['maxlength'] && signupForm.get('lastName')?.touched">
+                        <span>Maximum 240 characters allowed.</span>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="signupEmail" class="form-label">Email</label>
+                    <input type="email" class="form-control" formControlName="email"  id="signupEmail" placeholder="Enter Email">
+                    <div class="error" *ngIf="signupForm.get('email')?.invalid && signupForm.get('email')?.touched">
+                        <span *ngIf="signupForm.get('email')?.errors?.['required']">Email is required.</span>
+                        <span *ngIf="signupForm.get('email')?.errors?.['email']">Enter a valid email.</span>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="signupPhone" class="form-label">Phone Number</label>
+                    <input type="text" class="form-control" formControlName="phoneNumber" id="signupPhone" placeholder="Enter Phone Number">
+                    <div class="error" *ngIf="signupForm.get('phoneNumber')?.invalid && signupForm.get('phoneNumber')?.touched">
+                        <span *ngIf="signupForm.get('phoneNumber')?.errors?.['required']">Phone Number is required.</span>
+                        <span *ngIf="signupForm.get('phoneNumber')?.errors?.['pattern']">Enter a valid 10-digit mobile number.</span>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="signupPassword" class="form-label">Password</label>
+                    <input type="password" class="form-control" formControlName="password" id="signupPassword" placeholder="Enter Password">
+                    <div class="error" *ngIf="signupForm.get('password')?.invalid && signupForm.get('password')?.touched">
+                        <span *ngIf="signupForm.get('password')?.errors?.['required']">Password is required.</span>
+                        <span *ngIf="signupForm.get('password')?.errors?.['minlength']">Password must be at least 8 characters long.</span>
+                        <span *ngIf="signupForm.get('password')?.errors?.['pattern']">Must contain 1 uppercase, 1 lowercase, and 1 number.</span>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="confirmPassword" class="form-label">Confirm Password</label>
+                    <input type="password" class="form-control" formControlName="confirmPassword"  id="confirmPassword" placeholder="Confirm Password">
+                    <div class="error" *ngIf="signupForm.get('confirmPassword')?.invalid && signupForm.get('confirmPassword')?.touched || signupForm.errors?.['notMatching']">
+                        <span *ngIf="signupForm.get('confirmPassword')?.errors?.['required']">Confirm Password is required.</span>
+                        <span *ngIf="signupForm.errors?.['notMatching']">Passwords do not match.</span>
+                    </div>
+                </div>
+                <button type="submit" [disabled]="signupForm.invalid" class="btn btn-success w-100">Submit</button>
+                <label class="quick-link">Already have an account? <a routerLink="/login">Login</a></label>
+            </form>
+        </div>
+    </div>
+</div>

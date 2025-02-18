@@ -1,0 +1,29 @@
+ng-deep::body {
+    background-color: #f8f9fa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+}
+.error-container {
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background: #eee;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.error-code {
+    font-size: 100px;
+    font-weight: bold;
+    color: #dc3545;
+}
+.error-text {
+    font-size: 20px;
+    color: #6c757d;
+}

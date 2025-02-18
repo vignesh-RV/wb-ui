@@ -1,0 +1,70 @@
+<div class="home-container">
+    <div class="header-container">
+        <div class="logo-container">
+            <label class="logo-name">Wealth Bean</label>
+        </div>
+    </div>
+    <div class="content-container">
+        <div class="profile-container">
+            <label class="profile-name">Vignesh R</label>
+            <label class="profile-image"></label>
+            <pre>Highly skilled Full-Stack Software Developer with 8.5+ years of experience specializing in Angular, Node.js, Java Spring Boot, Docker, and Kubernetes. My expertise spans across SRE, microservices architecture, cloud deployments, and DevOps, ensuring scalable and reliable solutions.</pre>
+            
+            <div class="profile-footer">
+                <label class="create-post" (click)="showPostPopUp = !showPostPopUp"><i class="fas fa-pencil"></i> Create Post</label>
+            </div>
+        </div>
+        <div class="data-container">
+            <div class="post-container">
+                <div *ngFor="let post of posts" class="post-section">
+                    <div class="post-top">
+                        <div class="user-logo">
+                            <img [src]="post.postedBy.profileImage" />
+                        </div>
+                        <div class="user-info">
+                            <label class="post-user-name">{{post.postedBy.firstName}} {{post.postedBy.lastName}}</label>
+                            <label class="post-time">1 hour ago</label>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        <label class="post-title">{{post.title}}</label>
+                        <pre class="post-content" [innerHTML]="post.content"></pre>
+                    </div>
+                    <div class="post-bottom">
+                        <label class="vote-container"><i class="fas fa-arrow-up"></i> 
+                            Upvote <span>{{post.upvotes}}</span>
+                        </label>
+                        <label class="vote-container"><i class="fas fa-arrow-down"></i> 
+                            Downvote <span>{{post.downvotes}}</span>
+                        </label>
+
+                        <i title="comment" class="fas fa-comment"></i>
+                        <i title="Share" class="fas fa-share"></i>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div [hidden]="!showPostPopUp" class="post-popup-container">
+    <div class="post-popup-body">
+        <div class="popup-header">
+            <label class="popup-title">Create Post</label>
+            <label class="popup-close" (click)="showPostPopUp = false"><i class="fas fa-times"></i></label>
+        </div>
+        <div class="popup-content">
+            <label class="post-visiblity">Visiblity</label>
+            <select>
+                <option selected>Public</option>
+                <option>Followers</option>
+            </select>
+            <div style="height: 300px;" id="qui-editor" ></div>
+        </div>
+        <div class="popup-footer">
+            <button class="cancel-post" (click)="showPostPopUp = false"><i class="fas fa-times"></i> Cancel</button>
+            <button class="create-post" (click)="createPost()"><i class="fas fa-check"></i> Create Post</button>
+        </div>
+    </div>
+</div>
