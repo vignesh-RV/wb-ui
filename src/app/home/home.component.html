@@ -3,11 +3,17 @@
         <div class="logo-container">
             <label class="logo-name">Wealth Bean</label>
         </div>
+        <div class="profile-controls" (click)="logout()">
+            <i class="fa fa-sign-out"></i> Logout
+        </div>
     </div>
     <div class="content-container">
         <div class="profile-container">
             <label class="profile-name">Vignesh R</label>
-            <label class="profile-image"></label>
+            <div class="profile-imag-section">
+                <i class="fas fa-pencil"></i>
+                <label class="profile-image"></label>
+            </div>
             <pre>Highly skilled Full-Stack Software Developer with 8.5+ years of experience specializing in Angular, Node.js, Java Spring Boot, Docker, and Kubernetes. My expertise spans across SRE, microservices architecture, cloud deployments, and DevOps, ensuring scalable and reliable solutions.</pre>
             
             <div class="profile-footer">
@@ -23,7 +29,7 @@
                         </div>
                         <div class="user-info">
                             <label class="post-user-name">{{post.postedBy.firstName}} {{post.postedBy.lastName}}</label>
-                            <label class="post-time">1 hour ago</label>
+                            <label class="post-time" [title]="post.createdDate">{{ post.createdDate | postTime }}</label>
                         </div>
                     </div>
                     <div class="post-content">

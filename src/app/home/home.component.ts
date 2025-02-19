@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Post } from '../dto/models';
 
 import Quill from 'quill';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -60,7 +61,7 @@ export class HomeComponent implements OnInit {
     ['clean']                                         // remove formatting button
   ];
 
-  constructor() { 
+  constructor(private auth: AuthService) { 
     this.posts = new Array(20).fill(this.posts[0]);
   }
 
@@ -95,4 +96,7 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  logout() {
+    this.auth.doLogout();
+  }
 }

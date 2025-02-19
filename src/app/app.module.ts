@@ -8,6 +8,7 @@ import { SignupComponent } from './signup/signup.component';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
+import { PostTimePipe } from './pipes/custom.pipe';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { HomeComponent } from './home/home.component';
     LoginComponent,
     SignupComponent,
     NotfoundComponent,
-    HomeComponent
+    HomeComponent,
+    PostTimePipe
   ],
   imports: [
     BrowserModule,

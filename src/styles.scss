@@ -61,3 +61,18 @@ html, body{
         }
     }
 }
+
+:host, :root{
+    --theme-base-color: #0F52BA;
+    --theme-bg-color: #c7e0f1;
+    --theme-error-color: red;
+}
+
+button{
+    &:hover{
+        background-color: blue !important;
+    }
+    &:active{
+        background-color: var(--theme-bg-color) !important;
+    }
+}

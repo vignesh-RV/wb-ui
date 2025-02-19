@@ -16,5 +16,7 @@ export interface User {
     email: string;
     phoneNumber: string;
     password: string;
+    password_last_modified_date?: Date;
+    password_history?: any[];
     profileImage: string;
   }

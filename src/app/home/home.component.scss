@@ -2,6 +2,9 @@
     background-color: #06385a;
     height: 10%;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.04);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     .logo-container{
         height: 100%;
         align-items: center;
@@ -11,6 +14,16 @@
         .logo-name{
             color: #fff;
             font-size: 1.5rem;
+        }
+    }
+    .profile-controls{
+        color: #fff;
+        font-size: 12px;
+        font-weight: bold;
+        margin: 0 3rem;
+        cursor: pointer;
+        .fa-sign-out{
+            margin-right: 5px;
         }
     }
 }
@@ -117,19 +130,6 @@
 .home-container{
     height: 100%;
 }
-
-.profile-image{
-    background: url(/assets/images/Profile-image.jfif);
-    height: 15vw;
-    width: 15vw;
-    background-position: center;
-    background-size: contain;
-    background-color: #fff;
-    border-radius: 50%;
-    background-repeat: no-repeat;
-    border: dotted 1px;
-    margin: 10px;
-}
 .profile-name{
     font-weight: bold;
     text-align: center;
@@ -143,4 +143,39 @@ pre{
     white-space: break-spaces;
     padding: 0 10px;
     font-size: 12px;
+}
+
+
+.profile-imag-section{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .fa-pencil{
+        visibility: hidden;
+        position: absolute;
+        cursor: pointer;
+    }
+    &:hover{
+        .fa-pencil{
+            visibility: visible;
+        }
+        .profile-image{
+            opacity: .1;
+            border: dotted 2px #000;
+        }
+    }
+
+    .profile-image{
+        background: url(/assets/images/Profile-image.jfif);
+        height: 12vw;
+        width: 12vw;
+        background-position: center;
+        background-size: contain;
+        background-color: #fff;
+        border-radius: 50%;
+        background-repeat: no-repeat;
+        border: dotted 2px transparent;
+        margin: 10px;
+        cursor: pointer;
+    }
 }
