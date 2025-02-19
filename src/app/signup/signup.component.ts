@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ApiService } from '../services/api.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-signup',
@@ -12,9 +14,13 @@ export class SignupComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  signupForm: FormGroup;
+  signupForm: FormGroup = new FormGroup({});
   
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private api: ApiService, private auth: AuthService) {
+    this.initiateForm();
+  }
+
+  initiateForm() {
     this.signupForm = this.fb.group({
       firstName: ['', [Validators.required, Validators.maxLength(240)]],
       lastName: ['', [Validators.maxLength(240)]],
@@ -42,6 +48,16 @@ export class SignupComponent implements OnInit {
   submitForm() {
     if (this.signupForm.valid) {
       console.log("Form Submitted", this.signupForm.value);
+      let data = this.signupForm.getRawValue();
+      data.password = btoa(data.password);
+      this.api.handleRequest('post', '/user/signup', null, data).then((res: any) => {
+        if (res) {
+          this.api.info("User created successfully..");
+          this.auth.navigateToLogin();
+        }else{
+          this.api.error("Failed to create user..");
+        }
+      })
     } else {
       console.log("Form has errors!");
     }

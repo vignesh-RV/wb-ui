@@ -3,6 +3,7 @@ import { Post } from '../dto/models';
 
 import Quill from 'quill';
 import { AuthService } from '../services/auth.service';
+import { ApiService } from '../services/api.service';
 
 @Component({
   selector: 'app-home',
@@ -38,7 +39,11 @@ export class HomeComponent implements OnInit {
 
   showPostPopUp:boolean = false;
   showProfile:boolean = false;
+  userProfileImage:any = '';
 
+  get profileImage(): string {
+    return this.userProfileImage || this.auth.currentUser.profile_image || '/assets/images/profile-image-placeholder.png';
+  }
 
   quill:any = null;
 
@@ -63,7 +68,7 @@ export class HomeComponent implements OnInit {
     ['clean']                                         // remove formatting button
   ];
 
-  constructor(private auth: AuthService) { 
+  constructor(public auth: AuthService, private api: ApiService) {
     this.posts = new Array(20).fill(this.posts[0]);
   }
 
@@ -100,5 +105,37 @@ export class HomeComponent implements OnInit {
 
   logout() {
     this.auth.doLogout();
+  }
+
+
+  onFileSelected(event: Event): void {
+    const fileInput = event.target as HTMLInputElement;
+
+    if (fileInput?.files?.length) {
+      const file = fileInput.files[0];
+
+      // Use FileReader to read the image file and convert it to base64
+      const reader = new FileReader();
+
+      reader.onload = () => {
+        // This is where the base64 string of the image is set
+        this.userProfileImage = reader.result as string;
+        this.updateUserData('profile_image', this.userProfileImage);
+      };
+
+      reader.readAsDataURL(file); // Read the file as a Data URL (Base64 format)
+    }
+  }
+
+
+  updateUserData(key:string, value:any) {
+    let data = {key: key, value: value};
+    this.api.handleRequest('put', '/api/user/updateData', null, data).then((res: any) => {
+      if (res) {
+        this.api.info("Data updated successfully");
+      }else{
+        this.api.error("Failed to update data");
+      }
+    })
   }
 }
