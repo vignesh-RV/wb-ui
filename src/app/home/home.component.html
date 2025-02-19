@@ -8,8 +8,10 @@
         </div>
     </div>
     <div class="content-container">
-        <div class="profile-container">
+        <i (click)="showProfile=!showProfile" class="fa-solid fa-bars"></i>
+        <div [class.show]="showProfile" class="profile-container">
             <label class="profile-name">Vignesh R</label>
+            <i (click)="showProfile=!showProfile" class="fa-solid fa-times"></i>
             <div class="profile-imag-section">
                 <i class="fas fa-pencil"></i>
                 <label class="profile-image"></label>

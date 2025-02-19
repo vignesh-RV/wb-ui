@@ -76,3 +76,55 @@ button{
         background-color: var(--theme-bg-color) !important;
     }
 }
+
+.fa-solid{
+    display: none;
+}
+
+/* Mobile Devices: max-width of 768px or below */
+@media screen and (max-width: 768px) {
+    .inner-container{
+        flex-direction: column !important;
+        .logo-container-right{
+            width: 25vw !important;
+        }
+    }
+    .data-container{
+        width: 100% !important;
+    }
+    .fa-solid{
+        display: block;
+        position: absolute;
+        left: 5px;
+        margin-top: 5px;
+        font-size: 1.4rem;
+        cursor: pointer;
+    }
+    
+    .profile-container{
+        width: 0 !important;
+        overflow: hidden;
+        transition: all ease .6s;
+        .fa-times{
+            display: none !important;
+        }
+        .profile-footer{
+            display: none;
+        }
+        &.show{
+            width: 80% !important;
+            position: absolute;
+            z-index: 1;
+            left: 0;
+            box-shadow: -1px 2px 20px 0px #030303;
+            .profile-footer{
+                display: block;
+            }
+            .fa-times{
+                display: block !important;
+                left: 90%;
+            }
+        }
+    }
+  }
+  

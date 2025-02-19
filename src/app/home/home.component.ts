@@ -37,6 +37,8 @@ export class HomeComponent implements OnInit {
   ];
 
   showPostPopUp:boolean = false;
+  showProfile:boolean = false;
+
 
   quill:any = null;
 
