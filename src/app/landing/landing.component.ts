@@ -14,7 +14,9 @@ export class LandingComponent implements OnInit {
   showLoginForm:boolean = false;
   showSignupForm:boolean = false;
 
-  date:Date = new Date();
+  get date():Date{
+    return new Date();
+  }
 
 
   ngOnInit(): void {
