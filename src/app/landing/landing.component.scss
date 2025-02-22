@@ -1,0 +1,224 @@
+
+.inner-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--theme-base-color);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    height: 72%;
+    .logo-container-right{
+        // padding: 20px;
+        width: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        background-color: #f0f0f0;
+        color: var(--theme-base-color);
+        height: 100%;
+        .app-name{
+            font-size: 2rem;
+            font-weight: bold;
+        }
+        ul{
+            list-style: none;
+            line-height: 3rem;
+            .fa-solid{
+                margin-right: 10px;
+            }
+        }
+        .image-section{
+            background: url(/assets/images/wb-logo.png);
+            height: 10vw;
+            width: 10vw;
+            background-position: center;
+            background-size: contain;
+            background-color: #fff;
+            border-radius: 50%;
+            background-repeat: no-repeat;
+        }
+        .slogan{
+            color: #fff;
+            font-weight: bold;
+        }
+    }
+    .form-container {
+        width: 50%;
+        height: 100%;
+        background: white;
+        h3{
+            border-bottom: solid;
+            text-align: center;
+            margin-top: 0;
+        }
+        label.form-label {
+            font-size: 14px;
+            text-align: right;
+            min-width: 140px;
+            display: inline-block;
+            margin-right: 10px;
+        }
+        input {
+            border: none;
+            background-color: #fbf8f8;
+            padding: 5px;
+            margin-bottom: 5px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        button{
+            min-width: 120px;
+            text-align: center;
+            font-weight: bold;
+            padding: 0;
+            border-radius: 3px;
+            background-color: var(--theme-base-color);
+            color: #fff;
+            font-size: 14px;
+            min-height: 30px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+    }
+
+    .error {
+        color: var(--theme-error-color);
+        font-size: 10px;
+        word-wrap: break-word;
+        text-align: right;
+        width: 100%;
+        font-weight: bold;
+        letter-spacing: .5px;
+        display: flex;
+        flex-direction: column;
+    }
+    input.ng-invalid.ng-dirty {
+        border: solid 1px var(--theme-error-color) !important;
+    }
+    button:disabled {
+        opacity: .8;
+        cursor: not-allowed !important;
+    }
+    .quick-link{
+        font-size: 12px;
+        float: right;
+        margin-top: 25px;
+        a{
+            font-weight: bold;
+            font-size: 11px;
+        }
+    }
+}
+
+#signin{
+    height: 100%;
+    overflow: hidden;
+}
+
+.social-login{
+    margin: 10px 0;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 10px;
+    margin-top: 20px;
+    flex-direction: column;
+    height: 100%;
+    .btn-container{
+        display: flex;
+        flex-direction: column;
+        button{
+            border: none !important;
+        }
+    }
+    label.social-logo{
+        margin: 0 5px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        &:hover{
+            background-color: #eee;
+            border-radius: 50%;
+            scale: 1.2;
+            transition: allease .6s;
+        }
+    }
+    .social-login-icons{
+        display: flex;
+        padding: 10px;
+    }
+}
+
+.top-section{
+    background-color: #5e7fb3;
+    display: flex;
+    flex-direction: column;
+    padding-left: 1rem;
+    height: 28%;
+    .live-data-label{
+        // color: #0f52ba;
+        font-size: 16px;
+        font-weight: bold;
+        margin-left: 10vw;
+        padding-top: 1rem;
+    }
+}
+.stock-data{
+    display: flex;
+    justify-content: space-evenly;
+    padding: 0 0 1rem 0;
+    .stock-container{
+        border: 1px solid #dfe4f9;
+        background-color: #fff;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        margin: 15px;
+        min-width: 250px;
+        min-height: 125px;
+        height: unset;
+        .stock-name{
+            text-align: left;
+            padding: 1rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            .stock-trend{
+                background-color: #eee;
+                padding: 3px;
+                border-radius: 50%;
+                height: 30px;
+                width: 30px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                img{
+                    height: 20px;
+                    width: 20px;
+                }
+            }
+        }
+        .stock-ason{
+            padding: 0 1rem;
+            font-size: 12px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #dfe4f9;
+        }
+        .stock-value{
+            padding: 6px 1rem;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        .negative-return{
+            color: #d31d23;
+        }
+        .positive-return{
+            color: #009A82;
+        }
+    }
+}
+

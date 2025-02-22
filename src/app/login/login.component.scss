@@ -28,72 +28,7 @@
             font-weight: bold;
         }
     }
-    .form-container {
-        max-width: 400px;
-        padding: 20px;
-        background: white;
-        h3{
-            border-bottom: solid;
-            text-align: center;
-            margin-top: 0;
-        }
-        label.form-label {
-            font-size: 14px;
-            text-align: right;
-            min-width: 140px;
-            display: inline-block;
-            margin-right: 10px;
-        }
-        input {
-            border: none;
-            background-color: #fbf8f8;
-            padding: 5px;
-            margin-bottom: 5px;
-            border-radius: 4px;
-            font-size: 14px;
-        }
-        button{
-            min-width: 120px;
-            text-align: center;
-            font-weight: bold;
-            padding: 0;
-            border-radius: 3px;
-            background-color: var(--theme-base-color);
-            color: #fff;
-            font-size: 14px;
-            min-height: 30px;
-            cursor: pointer;
-            margin-top: 20px;
-        }
-    }
-
-    .error {
-        color: var(--theme-error-color);
-        font-size: 10px;
-        word-wrap: break-word;
-        text-align: right;
-        width: 100%;
-        font-weight: bold;
-        letter-spacing: .5px;
-        display: flex;
-        flex-direction: column;
-    }
-    input.ng-invalid.ng-dirty {
-        border: solid 1px var(--theme-error-color) !important;
-    }
-    button:disabled {
-        opacity: .8;
-        cursor: not-allowed !important;
-    }
-    .quick-link{
-        font-size: 12px;
-        float: right;
-        margin-top: 25px;
-        a{
-            font-weight: bold;
-            font-size: 11px;
-        }
-    }
+    
 }
 
 #signup{
@@ -108,26 +43,3 @@
     justify-content: center;
 }
 
-.social-login{
-    margin: 10px 0;
-    font-size: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-top: dotted;
-    padding-top: 10px;
-    margin-top: 20px;
-    label.social-logo{
-        margin: 0 5px;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        &:hover{
-            background-color: #eee;
-            border-radius: 50%;
-            scale: 1.2;
-            transition: allease .6s;
-        }
-    }
-}

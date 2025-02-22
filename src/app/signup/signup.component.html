@@ -1,10 +1,10 @@
-<div class="tab-pane fade" id="signup">
+<!-- <div class="tab-pane fade" id="signup">
     <div class="inner-container">
         <div class="logo-container-right">
             <div class="image-section"></div>
             <p class="slogan">Grow with us</p>
-        </div>
-        <div class="form-container">
+        </div> -->
+        <div class="login-form-container">
             <h3 class="text-center">Create your account</h3>
             <form [formGroup]="signupForm" (ngSubmit)="submitForm()">
                 <div class="mb-3">
@@ -55,9 +55,10 @@
                         <span *ngIf="signupForm.errors?.['notMatching']">Passwords do not match.</span>
                     </div>
                 </div>
-                <button type="submit" [disabled]="signupForm.invalid" class="btn btn-success w-100">Submit</button>
-                <label class="quick-link">Already have an account? <a routerLink="/login">Login</a></label>
+                <button type="submit" (click)="clearForm()" class="btn btn-clear w-100">Clear</button>
+                <button type="submit" class="btn btn-success w-100">Submit</button>
+                <label class="quick-link">Already have an account? <a (click)="navigateToLogin()">Login</a></label>
             </form>
         </div>
-    </div>
-</div>
+    <!-- </div>
+</div> -->

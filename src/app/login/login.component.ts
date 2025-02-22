@@ -9,11 +9,13 @@ import { AuthService } from '../services/auth.service';
 })
 export class LoginComponent implements OnInit {
 
+  signinForm: FormGroup = this.fb.group({});
+  user: any | null = null;
+  isLoggedIn: boolean = false;
+
   ngOnInit(): void {
   }
 
-  signinForm: FormGroup = this.fb.group({});
-    
     constructor(private fb: FormBuilder, private auth: AuthService) {
       if(auth.isAuthenticated()){
         auth.navigateToHome();
@@ -37,8 +39,24 @@ export class LoginComponent implements OnInit {
     submitForm() {
       if(!this.signinForm) return;
 
+      if (this.signinForm.invalid) {
+        this.signinForm.markAllAsTouched();
+        return;
+      }
+
       let data = this.signinForm.getRawValue();
       this.auth.doLogin(data);
     }
 
+    signInWithGoogle(){
+      this.auth.showGoogleLogin();
+    }
+
+    navigateToSignup(){
+      this.auth.navigateToSignup();
+    }
+    
+    clearForm() {
+      this.signinForm.reset();
+    }
 }

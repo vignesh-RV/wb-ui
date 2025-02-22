@@ -5,12 +5,12 @@ import { SignupComponent } from './signup/signup.component';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { HomeComponent } from './home/home.component';
 import { AuthGuard } from './guards/auth.guard';
+import { LandingComponent } from './landing/landing.component';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/login',
-    pathMatch: 'full'
+    component: LandingComponent
   },
   {
     path: 'home',
@@ -18,12 +18,16 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
+    path: 'landing',
+    component: LandingComponent
+  },
+  {
     path: 'login',
-    component: LoginComponent
+    component: LandingComponent
   },
   {
     path: 'signup',
-    component: SignupComponent
+    component: LandingComponent
   },
   {
     path: '404',
@@ -35,7 +39,7 @@ const routes: Routes = [
   }
 ];
 
-const appRoutes = RouterModule.forRoot(routes, {useHash: true});
+const appRoutes = RouterModule.forRoot(routes);
 
 @NgModule({
   imports: [appRoutes],

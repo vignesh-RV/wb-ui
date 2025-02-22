@@ -46,6 +46,11 @@ export class SignupComponent implements OnInit {
   }
 
   submitForm() {
+    if (this.signupForm.invalid) {
+      this.signupForm.markAllAsTouched();
+      return;
+    }
+
     if (this.signupForm.valid) {
       console.log("Form Submitted", this.signupForm.value);
       let data = this.signupForm.getRawValue();
@@ -63,4 +68,11 @@ export class SignupComponent implements OnInit {
     }
   }
 
+  navigateToLogin(){
+    this.auth.navigateToLogin();
+  }
+
+  clearForm() {
+    this.signupForm.reset();
+  }
 }

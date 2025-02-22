@@ -11,6 +11,7 @@ import { HomeComponent } from './home/home.component';
 import { PostTimePipe } from './pipes/custom.pipe';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptor } from './guards/auth.interceptor';
+import { LandingComponent } from './landing/landing.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { AuthInterceptor } from './guards/auth.interceptor';
     SignupComponent,
     NotfoundComponent,
     HomeComponent,
-    PostTimePipe
+    PostTimePipe,
+    LandingComponent
   ],
   imports: [
     BrowserModule,
@@ -34,6 +36,7 @@ import { AuthInterceptor } from './guards/auth.interceptor';
       multi: true // Ensure multiple interceptors can be used
     }
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports: [LoginComponent]
 })
 export class AppModule { }
