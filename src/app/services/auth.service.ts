@@ -129,10 +129,15 @@ export class AuthService {
   }
 
   showGoogleLogin() {
+    this.api.showLoader();
     google.accounts.id.prompt();
   }
 
   handleCredentialResponse(response: any) {
+    if (response.error) {
+      this.api.hideLoader();
+      return
+    }
     console.log("Google Token:", response.credential);
     this.decodeJwtResponse(response.credential);
   }
@@ -156,7 +161,7 @@ export class AuthService {
 
   generateTokenForGoogleUser() {
     this.api.showLoader();
-    let data = {googleUser: localStorage.getItem('google_user')};
+    let data = this.googleUser;
     this.api.handleRequest('post', '/user/social/token', null, data).then((res: any) => {
       if (res) {
         this.api.hideLoader();
