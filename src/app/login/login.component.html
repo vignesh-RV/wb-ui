@@ -24,8 +24,8 @@
                         <span *ngIf="signinForm.get('password')?.errors?.['minlength']">Invalid Password, It must be at least 8 characters long.</span>
                     </div>
                 </div>
-                <button type="submit" (click)="clearForm()" class="btn btn-clear w-100">Clear</button>
-                <button type="submit"  class="btn btn-success w-100">Submit</button>
+                <button type="submit" class="btn btn-success w-100">Submit</button>
+                <button (click)="clearForm()" class="btn btn-clear w-100">Clear</button>
                 <label class="quick-link">You don't have any account? <a (click)="navigateToSignup()">Signup</a></label>
             </form>
             <div class="social-login">

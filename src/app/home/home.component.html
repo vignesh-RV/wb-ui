@@ -8,10 +8,10 @@
         </div>
     </div>
     <div class="content-container">
-        <i (click)="showProfile=!showProfile" class="fa-solid fa-bars"></i>
+        <i (click)="showProfile=!showProfile" class="show-only-on-mobile fa-solid fa-bars"></i>
         <div [class.show]="showProfile" class="profile-container">
             <label class="profile-name">Vignesh R</label>
-            <i (click)="showProfile=!showProfile" class="fa-solid fa-times"></i>
+            <i (click)="showProfile=!showProfile" class="show-only-on-mobile  fa-solid fa-times"></i>
             <div class="profile-imag-section">
                 <i class="fas fa-pencil"></i>
                 <input id="profile-chooser" type="file" hidden (change)="onFileSelected($event)" accept="image/*"/>

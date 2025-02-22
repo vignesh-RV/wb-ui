@@ -78,7 +78,7 @@ export class AuthService {
   }
 
   navigateToHome(){
-    this.router.navigate(['/'],{skipLocationChange:true});
+    this.router.navigate(['/home'],{skipLocationChange:true});
   }
 
   navigateToLogin(){
@@ -148,7 +148,25 @@ export class AuthService {
     );
     
     this.googleUser = JSON.parse(jsonPayload);
-    localStorage.setItem('google_user', jsonPayload);
-    console.log('User Info:', this.googleUser);
+    if(this.googleUser){
+      this.generateTokenForGoogleUser();
+      // localStorage.setItem('google_user', jsonPayload);
+    }
+  }
+
+  generateTokenForGoogleUser() {
+    this.api.showLoader();
+    let data = {googleUser: localStorage.getItem('google_user')};
+    this.api.handleRequest('post', '/user/social/token', null, data).then((res: any) => {
+      if (res) {
+        this.api.hideLoader();
+        Object.keys(res).forEach(key => localStorage.setItem(key, res[key]));
+        this.getCurrentUser(true);
+        this.navigateToHome();
+      }else{
+        this.api.error("Failed to fetch token..");
+        this.api.hideLoader();
+      }
+    })
   }
 }

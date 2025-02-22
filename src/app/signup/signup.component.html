@@ -55,8 +55,9 @@
                         <span *ngIf="signupForm.errors?.['notMatching']">Passwords do not match.</span>
                     </div>
                 </div>
-                <button type="submit" (click)="clearForm()" class="btn btn-clear w-100">Clear</button>
                 <button type="submit" class="btn btn-success w-100">Submit</button>
+                <button (click)="clearForm()" class="btn btn-clear w-100">Clear</button>
+                
                 <label class="quick-link">Already have an account? <a (click)="navigateToLogin()">Login</a></label>
             </form>
         </div>

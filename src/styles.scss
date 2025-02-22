@@ -186,7 +186,7 @@ button{
     }
 
     .btn-clear{
-        margin-right: 15px;
+        margin-left: 15px;
         border: solid 1px;
         background-color: #fff;
         color: #3f75c8;
@@ -197,12 +197,15 @@ button{
     }
 }
 
-// .fa-solid{
-//     display: none;
-// }
+.show-only-on-mobile {
+    display: none;
+}
 
 /* Mobile Devices: max-width of 768px or below */
 @media screen and (max-width: 768px) {
+    .show-only-on-mobile {
+        display: flex;
+    }
     .inner-container{
         flex-direction: column !important;
         .logo-container-right{
@@ -273,6 +276,8 @@ button{
             .fa-times{
                 display: block !important;
                 left: 90%;
+                position: absolute;
+                top: 10px;
             }
         }
     }
