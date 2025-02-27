@@ -12,30 +12,9 @@ import { ApiService } from '../services/api.service';
 })
 export class HomeComponent implements OnInit {
 
-  posts:Post[] = [
-    {
-      title: 'Reflection',
-      content: `            1. My parents were together for 55 years. One morning, my mom had a heart attack while going downstairs to make breakfast. My dad did his best to lift her and rushed her to the hospital, disregarding traffic signals. Unfortunately, by the time they got there, she had passed away.
+  posts:Post[] = [];
 
-                            2. At the funeral, my dad didn’t speak much, he was quiet and barely cried.
-                            
-                            3. Later that night, we gathered together, and my dad asked my brother, a theologian, about where mom might be now. We discussed life after death, but then my dad insisted we go to the cemetery. We hesitated, saying it was too late, but he firmly said, "Don’t argue with the man who just lost his wife of 55 years."`,
-      id: 1,
-      postedBy: {
-        firstName: 'Vignesh',
-        lastName :  'R',
-        email: 'Vignesh@123',
-        phoneNumber: '23232323',
-        password: '2323232',
-        profileImage: '/assets/images/Profile-image.jfif'
-      },
-      createdDate: new Date(),
-      upvotes: 3,
-      downvotes: 19,
-      shareCount: 1,
-      comments: []
-    }
-  ];
+  newPosts:Post[] = [];
 
   showPostPopUp:boolean = false;
   showProfile:boolean = false;
@@ -47,6 +26,7 @@ export class HomeComponent implements OnInit {
 
   quill:any = null;
 
+  minimalToolbar = [[ 'image', 'link', 'bold', 'italic', 'underline', 'strike'] ];
  toolbarOptions = [
     ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
     ['blockquote', 'code-block'],
@@ -69,38 +49,62 @@ export class HomeComponent implements OnInit {
   ];
 
   constructor(public auth: AuthService, private api: ApiService) {
-    this.posts = new Array(20).fill(this.posts[0]);
+    this.resetPost();
+    this.fetchAllPosts();
+  }
+
+  fetchAllPosts() {
+    this.api.handleRequest('get', '/api/posts/all').then((res: any) => {
+      if (res) {
+        this.posts = res;
+      }
+    })
   }
 
   ngOnInit(): void {
   }
 
   ngAfterViewInit() {
+    this.inititalizeEditor(this.minimalToolbar);
+  }
+
+  inititalizeEditor(toolbarOptions:any) {
     this.quill = new Quill('#qui-editor',{modules: {
-      toolbar: this.toolbarOptions
+      toolbar: toolbarOptions
     },theme: 'snow'})
   }
 
   createPost() {
-    this.showPostPopUp = false;
-    this.posts.splice(0,0,{
-      title: 'Reflection ' +new Date().getTime(),
-      content: this.quill.root.innerHTML,
-      id: 1,
-      postedBy: {
-        firstName: 'Vignesh',
-        lastName :  'R',
-        email: 'Vignesh@123',
-        phoneNumber: '23232323',
-        password: '2323232',
-        profileImage: '/assets/images/Profile-image.jfif'
-      },
-      createdDate: new Date(),
-      upvotes: 3,
-      downvotes: 19,
-      shareCount: 1,
-      comments: []
-    });
+    let data = {content: this.quill.root.innerHTML, title: this.newPosts[0].title};
+    this.api.handleRequest('post', '/api/posts', null, data).then((res: any) => {
+      if (res) {
+        this.resetPost();
+        this.fetchAllPosts();
+      }else{
+        this.api.error("Failed to create a post..");
+      }
+    })
+  }
+
+  resetPost() {
+    this.newPosts = [{
+      title: '',
+        content: ``,
+        id: 1,
+        postedBy: {
+          firstName: this.auth.currentUser.first_name,
+          lastName :  this.auth.currentUser.last_name,
+          password: '',
+          email: this.auth.currentUser.email,
+          phoneNumber: this.auth.currentUser.phone_number,
+          profileImage: this.auth.currentUser.profile_image || '/assets/images/Profile-image.jfif'
+        },
+        createdDate: new Date(),
+        upvotes: 0,
+        downvotes: 0,
+        shareCount: 0,
+        comments: []
+    }];
   }
 
   logout() {
@@ -133,6 +137,17 @@ export class HomeComponent implements OnInit {
     this.api.handleRequest('put', '/api/user/updateData', null, data).then((res: any) => {
       if (res) {
         this.api.info("Data updated successfully");
+      }else{
+        this.api.error("Failed to update data");
+      }
+    })
+  }
+  
+  updateVote(post:any, value:any) {
+    let data = {post_id: post.post_id, vote_type: value == 1 ? 'UP' : 'DOWN'};
+    this.api.handleRequest('post', '/api/posts/updateVote', null, data).then((res: any) => {
+      if (res) {
+        this.fetchAllPosts();
       }else{
         this.api.error("Failed to update data");
       }

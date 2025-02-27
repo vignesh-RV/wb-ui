@@ -12,6 +12,7 @@ export class LoginComponent implements OnInit {
   signinForm: FormGroup = this.fb.group({});
   user: any | null = null;
   isLoggedIn: boolean = false;
+  error_response:string = '';
 
   ngOnInit(): void {
   }
@@ -45,7 +46,10 @@ export class LoginComponent implements OnInit {
       }
 
       let data = this.signinForm.getRawValue();
-      this.auth.doLogin(data);
+      this.auth.doLogin(data).then((res: any) => {}, (err: any) => {
+        console.log(err);
+        this.error_response = typeof err.message === 'string' ? err.message : 'Unable to validate your account, please try again later.';
+      });
     }
 
     signInWithGoogle(){
@@ -58,5 +62,6 @@ export class LoginComponent implements OnInit {
     
     clearForm() {
       this.signinForm.reset();
+      this.error_response = '';
     }
 }

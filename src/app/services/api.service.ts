@@ -107,6 +107,7 @@ export class ApiService {
         break;
       }
     }
+    return message;
   }
 
   private isJSONparsable(err: string) {
@@ -121,7 +122,7 @@ export class ApiService {
 
   handleRequest(type: string, url: string, params?: any, body?: any, applicationType?: any, nonJsonResponse?: any, handleError?: boolean): Promise<any> {
     
-
+    this.showLoader();
     return new Promise((resolve, reject) => {
       this.request(type, url, body, applicationType).subscribe({
         next: (res: any) => {
@@ -132,10 +133,10 @@ export class ApiService {
         },
         error: (err: any) => {
           if (!handleError)
-            this.errorHandler(err,type);
-          reject('error');
+            reject(this.errorHandler(err,type));
+          reject(err);
         },
-        complete: () => { }
+        complete: () => {this.hideLoader();}
       });
     });
   }

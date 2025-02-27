@@ -10,7 +10,7 @@
     <div class="content-container">
         <i (click)="showProfile=!showProfile" class="show-only-on-mobile fa-solid fa-bars"></i>
         <div [class.show]="showProfile" class="profile-container">
-            <label class="profile-name">Vignesh R</label>
+            <label class="profile-name">{{auth?.currentUser?.first_name || '--'}} {{auth?.currentUser?.last_name}}</label>
             <i (click)="showProfile=!showProfile" class="show-only-on-mobile  fa-solid fa-times"></i>
             <div class="profile-imag-section">
                 <i class="fas fa-pencil"></i>
@@ -19,13 +19,13 @@
             </div>
             <pre>Highly skilled Full-Stack Software Developer with 8.5+ years of experience specializing in Angular, Node.js, Java Spring Boot, Docker, and Kubernetes. My expertise spans across SRE, microservices architecture, cloud deployments, and DevOps, ensuring scalable and reliable solutions.</pre>
             
-            <div class="profile-footer">
+            <!-- <div class="profile-footer">
                 <label class="create-post" (click)="showPostPopUp = !showPostPopUp; showProfile= false"><i class="fas fa-pencil"></i> Create Post</label>
-            </div>
+            </div> -->
         </div>
         <div class="data-container">
             <div class="post-container">
-                <div *ngFor="let post of posts" class="post-section">
+                <div *ngFor="let post of newPosts" class="post-section">
                     <div class="post-top">
                         <div class="user-logo">
                             <img [src]="post.postedBy.profileImage" />
@@ -34,16 +34,39 @@
                             <label class="post-user-name">{{post.postedBy.firstName}} {{post.postedBy.lastName}}</label>
                             <label class="post-time" [title]="post.createdDate">{{ post.createdDate | postTime }}</label>
                         </div>
+                        <div contenteditable="true" class="post-edit">
+                            <div style="max-height: 50vh;" id="qui-editor" ></div>
+                        </div>
+                    </div>
+                    
+                    <div class="post-bottom">
+                        <label class="post-visiblity">Visiblity</label>
+                        <select>
+                            <option selected>Public</option>
+                            <option>Followers</option>
+                        </select>
+                        <button class="create-post" (click)="createPost()"><i class="fas fa-check"></i> Create Post</button>
+                    </div>
+                </div>
+                <div *ngFor="let post of posts" class="post-section">
+                    <div class="post-top">
+                        <div class="user-logo">
+                            <img [src]="post.postedBy['profileImage']" />
+                        </div>
+                        <div class="user-info">
+                            <label class="post-user-name">{{post.postedBy['firstName']}} {{post.postedBy['lastName']}}</label>
+                            <label class="post-time" [title]="post.createdDate">{{ post.createdDate | postTime }}</label>
+                        </div>
                     </div>
                     <div class="post-content">
                         <label class="post-title">{{post.title}}</label>
                         <pre class="post-content" [innerHTML]="post.content"></pre>
                     </div>
                     <div class="post-bottom">
-                        <label class="vote-container"><i class="fas fa-arrow-up"></i> 
+                        <label (click)="updateVote(post, 1)" class="vote-container"><i class="fas fa-arrow-up"></i> 
                             Upvote <span>{{post.upvotes}}</span>
                         </label>
-                        <label class="vote-container"><i class="fas fa-arrow-down"></i> 
+                        <label (click)="updateVote(post, -1)" class="vote-container"><i class="fas fa-arrow-down"></i> 
                             Downvote <span>{{post.downvotes}}</span>
                         </label>
 

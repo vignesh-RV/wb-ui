@@ -10,7 +10,7 @@ import { AuthService } from '../services/auth.service';
 })
 export class SignupComponent implements OnInit {
 
-
+  error_response:string = '';
   ngOnInit(): void {
   }
 
@@ -62,6 +62,8 @@ export class SignupComponent implements OnInit {
         }else{
           this.api.error("Failed to create user..");
         }
+      }, (err: any) => {
+        this.error_response = typeof err.message === 'string' ? err.message : 'Unable to Create account, please try again later.';
       })
     } else {
       console.log("Form has errors!");
@@ -74,5 +76,6 @@ export class SignupComponent implements OnInit {
 
   clearForm() {
     this.signupForm.reset();
+    this.error_response = '';
   }
 }

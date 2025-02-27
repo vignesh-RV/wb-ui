@@ -5,6 +5,7 @@
             <p class="slogan">Grow with us</p>
         </div> -->
         <div class="login-form-container">
+            <p *ngIf="error_response" class="custom-error-box"><span class="error-warn">&#9888;</span>{{error_response}}</p>
             <h3 class="text-center">Create your account</h3>
             <form [formGroup]="signupForm" (ngSubmit)="submitForm()">
                 <div class="mb-3">

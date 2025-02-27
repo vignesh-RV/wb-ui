@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ApiService } from './services/api.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'wb-ui';
+
+  get showLoader(): boolean {
+    return this.api.loaderCount > 0 ? true : false
+  }
+
+  constructor(private api: ApiService) { }
 }

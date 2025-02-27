@@ -45,19 +45,26 @@ export class AuthService {
   }
 
   doLogin(data:any): any{
-    data.password = btoa(data.password);
-    this.api.showLoader();
-    this.api.handleRequest('post', '/user/login', null, data).then((res: any) => { 
-      this.api.hideLoader();
-      if(res){
-        Object.keys(res).forEach(key => localStorage.setItem(key, res[key]));
-        this.navigateToHome();
-        this.getCurrentUser(true);
-      }else{
-        this.api.error("Invalid Credentials");
-      }
-    },
-    (err: any) => { this.api.hideLoader(); })
+    return new Promise((resolve, reject) => {
+      data.password = btoa(data.password);
+      this.api.showLoader();
+      this.api.handleRequest('post', '/user/login', null, data).then((res: any) => {
+        this.api.hideLoader();
+        if(res){
+          Object.keys(res).forEach(key => localStorage.setItem(key, res[key]));
+          this.navigateToHome();
+          this.getCurrentUser(true);
+          resolve(res);
+        }else{
+          this.api.error("Invalid Credentials");
+          reject({"message": "Invalid Credentials"});
+        }
+      }, (err: any) => {
+        this.api.hideLoader();
+        reject({"message": err});
+      })
+    })
+    
   }
 
   getToken(): any{

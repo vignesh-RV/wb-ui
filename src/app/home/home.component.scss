@@ -102,6 +102,10 @@
                 .post-title{
                     font-weight: bold;
                 }
+                img{
+                    height: 40vh;
+                    width: 40vw;
+                }
             }
             .post-bottom{
                 border-top: solid 1px;
@@ -179,3 +183,14 @@ pre{
         cursor: pointer;
     }
 }
+
+.post-edit{
+    width: 78%;
+    min-height: 40px;
+    border-radius: 20px;
+    background-color: #eee;
+    padding: 10px 20px;
+    font-size: 1rem;
+    margin-left: 2%;
+}
+

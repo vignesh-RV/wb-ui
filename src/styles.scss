@@ -293,3 +293,47 @@ button{
   .swiper {
     width: 80%;
   }
+
+  .custom-error-box{
+    background-color: red;
+    color: #fff;
+    padding: 5px 2rem;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    position: absolute;
+    transform: translate(-5px, -55px);
+    font-size: 12px;
+    width: 40vw;
+    span{
+        margin-right: 10px;
+        font-size: 1rem;
+        transform: translateY(-3px);
+    }
+}
+
+
+.post-content, .ql-editor{
+    img{
+        height: 40vh;
+        // width: 40vw;
+    }
+}
+
+.ql-toolbar.ql-snow{
+    position: absolute;
+    top: -27px;
+    border: none;
+}
+.ql-container.ql-snow{
+    border: none;
+}
+
+.ql-snow.ql-toolbar button, .ql-snow .ql-toolbar button{
+    height: 20px !important;
+    &:hover{
+        background: transparent !important;
+        font-weight: bold;
+    }
+}
