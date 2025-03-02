@@ -1,0 +1,35 @@
+<div class="comment-container">
+    <ng-container *ngFor="let comment of post.comments">
+    <div class="comment-data">
+        <div class="user-logo">
+            <img [src]="comment.postedBy.profileImage" />
+        </div>
+        <div class="user-info">
+            <label class="post-user-name">{{comment.postedBy['firstName']}} {{comment.postedBy['lastName']}}</label>
+            <label class="post-time" [title]="comment.createdDate">{{ comment.createdDate | postTime }}</label>
+        </div>
+        <div class="comment-content">
+            <pre class="post-content" [innerHTML]="comment.content"></pre>
+            <label class="reply-comment-label" (click)="comment.showComments = !comment.showComments; resetComments()"><i class="fas fa-reply"></i>reply </label>
+            <label class="reply-comment-label" *ngIf="comment.comments?.length" (click)="comment.showComments = !comment.showComments">{{comment.comments.length}} replies</label>
+        </div>
+    </div>
+    <div *ngIf="comment.showComments" class="comment-reply-container">
+        <app-comments [post]="comment"></app-comments>
+    </div>
+    <ng-container *ngIf="comment.showComments">
+        <div class="self-comment" *ngFor="let ncomment of newComments">
+            <div class="user-logo">
+                <img [src]="post.postedBy.profileImage" />
+            </div>
+            <div class="user-info">
+                <label class="post-user-name">{{ncomment['postedBy']['firstName']}} {{ncomment['postedBy']['lastName']}}</label>
+            </div>
+            <div class="comment-content">
+                <input type="text" #commentBox >
+                <button (click)="createComment(post, comment.comment_id, commentBox.value)"><i class="fas fa-check"></i></button>
+            </div>
+        </div>
+    </ng-container>
+    </ng-container>    
+</div>

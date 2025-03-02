@@ -18,6 +18,11 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
+    path: 'post/:id',
+    component: HomeComponent,
+    canActivate: [AuthGuard]
+  },
+  {
     path: 'landing',
     component: LandingComponent
   },

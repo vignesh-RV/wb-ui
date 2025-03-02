@@ -12,6 +12,7 @@ import { PostTimePipe } from './pipes/custom.pipe';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptor } from './guards/auth.interceptor';
 import { LandingComponent } from './landing/landing.component';
+import { CommentsComponent } from './comments/comments.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { LandingComponent } from './landing/landing.component';
     NotfoundComponent,
     HomeComponent,
     PostTimePipe,
-    LandingComponent
+    LandingComponent,
+    CommentsComponent
   ],
   imports: [
     BrowserModule,
