@@ -65,7 +65,7 @@
                         </div>
                         <div class="user-info">
                             <label *ngIf="post.postedBy" class="post-user-name">{{post.postedBy['firstName']}} {{post.postedBy['lastName']}}</label>
-                            <label class="post-time" [title]="post.createdDate">{{ post.createdDate | postTime }}</label>
+                            <label class="post-time" [title]="post.createdDate | date:'full'">{{ post.createdDate | postTime }}</label>
                         </div>
                         <div *ngIf="post.postedBy && post.postedBy['user_id'] != auth?.currentUser?.user_id" class="follow-section">
                             <label (click)="updateFollowers(post.postedBy['user_id'])" *ngIf="!userstats.followings?.includes(post.postedBy['user_id'])">follow</label>
@@ -129,7 +129,7 @@
                         <div class="stock-container swiper-slide" *ngFor="let stock of requiredIndexes">
                             <div class="stock-name">
                                 {{stock.data?.indexName || stock.name || '--'}}
-                                <label class="stock-trend"><img src="assets/images/trend-down.png"/></label>
+                                <label class="stock-trend"><img src="assets/images/trend-{{stock.data?.data?.change > 0 ? 'up' : 'down'}}.png"/></label>
                             </div>
                             <label class="stock-ason">{{stock.data?.ason || '--'}}</label>
                             <div class="stock-value">

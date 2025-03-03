@@ -8,7 +8,7 @@
                     <div class="stock-container swiper-slide" *ngFor="let stock of requiredIndexes">
                         <div class="stock-name">
                             {{stock.data?.indexName || stock.name || '--'}}
-                            <label class="stock-trend"><img src="assets/images/trend-down.png"/></label>
+                            <label class="stock-trend"><img *ngIf="stock.data?.data" src="assets/images/trend-{{stock.data?.data?.change > 0 ? 'up' : 'down'}}.png"/></label>
                         </div>
                         <label class="stock-ason">{{stock.data?.ason || '--'}}</label>
                         <div class="stock-value">

@@ -6,7 +6,7 @@
         </div>
         <div class="user-info">
             <label class="post-user-name">{{comment.postedBy['firstName']}} {{comment.postedBy['lastName']}}</label>
-            <label class="post-time" [title]="comment.createdDate">{{ comment.createdDate | postTime }}</label>
+            <label class="post-time" [title]="comment.createdDate | date:'full'">{{ comment.createdDate | postTime }}</label>
         </div>
         <div class="comment-content">
             <pre class="post-content" [innerHTML]="comment.content"></pre>

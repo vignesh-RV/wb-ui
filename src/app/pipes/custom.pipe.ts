@@ -6,6 +6,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class PostTimePipe implements PipeTransform {
 
   transform(date: any ): unknown {
+    if(!date) return '--';
     const now:any = new Date();
     const diffInSeconds = Math.floor((now - (new Date(date) as any)) / 1000); // Difference in seconds
   
